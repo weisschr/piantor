@@ -3,13 +3,12 @@
 
 #include QMK_KEYBOARD_H
 
+#define KA_LSFP   LSFT_T(KC_SPC)
+#define KA_RSFEN  RSFT_T(KC_ENT)
+
 // Fingers
 #define KC_LCTRL_F    MT(MOD_LCTL, KC_F)
 #define KC_RCTRL_J    MT(MOD_RCTL, KC_J)
-#define KC_LALT_V     MT(MOD_LALT, KC_V)
-#define KC_RALT_M     MT(MOD_RALT, KC_M)
-#define KC_LGUI_T     MT(MOD_LGUI, KC_T)
-#define KC_RGUI_Y     MT(MOD_RGUI, KC_Y)
 
 // DUO
 #define KC_LSHCTRL_G  MT(MOD_LCTL | MOD_LSFT, KC_G)
@@ -114,14 +113,17 @@ enum layers {
       MYCOMPUTER,
       ONESHOT_SYM_LSHIFT,
       ONESHOT_SYM_RSHIFT,
-      OSM_RSHIFT,
-      OSM_RCTRL,
-      OSM_RALT,
-      OSM_HYPER,
-      OSM_LGUI,
-      OSM_MEH,
       CUSTOM_LENGTH
   };
+
+  enum {TD_HYPR_LYR = 0,
+    TD_GUI_LYR,
+    TD_MEH_LYR,
+    TD_ALT_LYR,
+    TD_CTL_LYR,
+    TD_SHFT_LYR,
+    x_TAP_DANCE_END
+};
 
 //-------------------------------------------------------------------------------
 // Layer 0 combos
@@ -130,37 +132,37 @@ enum layers {
 
 const uint16_t PROGMEM doubleq_combo[]  = {KC_D, KC_LCTRL_F, COMBO_END};
 const uint16_t PROGMEM singleq_combo[]  = {KC_RCTRL_J, KC_K, COMBO_END};
-const uint16_t PROGMEM lpar_combo[]     = {KC_C, KC_LALT_V, COMBO_END};
-const uint16_t PROGMEM rpar_combo[]     = {KC_RALT_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM lbrace_combo[]   = {KC_X, KC_C, KC_LALT_V, COMBO_END};
-const uint16_t PROGMEM rbrace_combo[]   = {KC_RALT_M, KC_COMM, KC_DOT, COMBO_END};
-const uint16_t PROGMEM lcurly_combo[]   = {KC_X, KC_LALT_V, COMBO_END};
-const uint16_t PROGMEM rcurly_combo[]   = {KC_RALT_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM lpar_combo[]     = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM rpar_combo[]     = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM lbrace_combo[]   = {KC_X, KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM rbrace_combo[]   = {KC_M, KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM lcurly_combo[]   = {KC_X, KC_V, COMBO_END};
+const uint16_t PROGMEM rcurly_combo[]   = {KC_M, KC_DOT, COMBO_END};
 
 //-------------------------------------------------------------------------------
 // Layer control combos
 
-const uint16_t PROGMEM apps_combo[]     = {KC_RGUI_Y, KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM osl_apps_combo[] = {KC_RGUI_Y, KC_I, COMBO_END};
+const uint16_t PROGMEM apps_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM osl_apps_combo[] = {KC_Y, KC_I, COMBO_END};
 
 const uint16_t PROGMEM numb_combo[]     = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_combo[] = {KC_RSHCTRL_H, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_lshift_combo[] = {KC_RSHCTRL_H, KC_RCTRL_J, COMBO_END};
 
-const uint16_t PROGMEM func_combo[]     = {KC_N, KC_RALT_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM func_combo[]     = {KC_N, KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM osl_func_combo[] = {KC_N, KC_COMM, COMBO_END};
 
 const uint16_t PROGMEM default_combo[]     = {KC_RCTRL_J, KC_K, KC_L, COMBO_END};
 
-const uint16_t PROGMEM mouse_combo[]       = {KC_W, KC_E,  KC_R, KC_LGUI_T, COMBO_END};
+const uint16_t PROGMEM mouse_combo[]       = {KC_W, KC_E,  KC_R, KC_T, COMBO_END};
 
 
 //--------------------------------------------------------------------------------
 // Behavioral combos
 
 const uint16_t PROGMEM lesc_combo[]       = {KC_LCTRL_F, KC_LSHCTRL_G, COMBO_END};
-const uint16_t PROGMEM winclose_combo[]   = {KC_R, KC_LGUI_T, COMBO_END};
-const uint16_t PROGMEM appclose_combo[]   = {KC_LALT_V, KC_B, COMBO_END};
+const uint16_t PROGMEM winclose_combo[]   = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM appclose_combo[]   = {KC_V, KC_B, COMBO_END};
 
 const uint16_t PROGMEM del_combo[]        = {KC_D, KC_LSHCTRL_G, COMBO_END};
 
@@ -168,39 +170,34 @@ const uint16_t PROGMEM caplock_combo[]    = {KC_Z, KC_X, KC_C,  COMBO_END};
 const uint16_t PROGMEM capsword_combo[]   = {KC_C, KC_B, COMBO_END};
 
 const uint16_t PROGMEM leftarrow_combo[]  = {KC_D, KC_LCTRL_F, KC_LSHCTRL_G, COMBO_END};
-const uint16_t PROGMEM rightarrow_combo[] = {KC_E, KC_R, KC_LGUI_T, COMBO_END};
+const uint16_t PROGMEM rightarrow_combo[] = {KC_E, KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM uparrow_combo[]    = {KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM downarrow_combo[]  = {KC_S, KC_D, KC_LCTRL_F, COMBO_END};
 
 const uint16_t PROGMEM pageup_combo[]     = {KC_LCTRL_F, KC_RCTRL_J, COMBO_END};
-const uint16_t PROGMEM pagedn_combo[]     = {KC_LALT_V, KC_RALT_M, COMBO_END};
+const uint16_t PROGMEM pagedn_combo[]     = {KC_V, KC_M, COMBO_END};
 const uint16_t PROGMEM home_combo[]       = {KC_LSHCTRL_G, KC_RSHCTRL_H, COMBO_END};
 const uint16_t PROGMEM end_combo[]        = {KC_B, KC_N, COMBO_END};
 
 const uint16_t PROGMEM teams_mute[]       = {KC_R, KC_U, COMBO_END};
-const uint16_t PROGMEM teams_vidtog[]     = {KC_LGUI_T, KC_RGUI_Y, COMBO_END};
+const uint16_t PROGMEM teams_vidtog[]     = {KC_T, KC_Y, COMBO_END};
 
 // Macro Combos
 const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
-const uint16_t PROGMEM mycomputer_combo[] = {KC_C, KC_RGUI_Y, COMBO_END};
+const uint16_t PROGMEM mycomputer_combo[] = {KC_C, KC_Y, COMBO_END};
 const uint16_t PROGMEM controlpan_combo[] = {KC_C, KC_N, COMBO_END};
 const uint16_t PROGMEM edge_combo[]       = {KC_C, KC_RCTRL_J, COMBO_END};
 const uint16_t PROGMEM vscode_combo[]     = {KC_C, KC_U, COMBO_END};
-const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_RALT_M, COMBO_END};
+const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END};
 
 // Boot combos
-const uint16_t PROGMEM boot_left_combo[]  = {KC_Q, KC_LGUI_T, COMBO_END};
-const uint16_t PROGMEM boot_right_combo[] = {KC_RGUI_Y, KC_P, COMBO_END};
-
-// OSM Mods
-/* const uint16_t PROGMEM osm_ctrl_combo[]  = {KC_D, KC_K, COMBO_END};
-const uint16_t PROGMEM osm_alt_combo[]   = {KC_E, KC_I, COMBO_END};
-const uint16_t PROGMEM osm_shift_combo[] = {KC_C, KC_COMM, COMBO_END}; */
+const uint16_t PROGMEM boot_left_combo[]  = {KC_Q, KC_T, COMBO_END};
+const uint16_t PROGMEM boot_right_combo[] = {KC_Y, KC_P, COMBO_END};
 
 //Mouse combos
 const uint16_t PROGMEM left_mouse_combo[]   = {KC_S, KC_LCTRL_F, COMBO_END};
 const uint16_t PROGMEM right_mouse_combo[]  = {KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM middle_mouse_combo[] = {KC_E, KC_LGUI_T, COMBO_END};
+const uint16_t PROGMEM middle_mouse_combo[] = {KC_E, KC_T, COMBO_END};
 
 // End layer 0 combo definitions
 //--------------------------------------------------------------------------------
@@ -282,6 +279,157 @@ combo_t key_combos[] = {
 // end combos
 //-------------------------------------------------------------------------------
 
+void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_ctl_lyr_reset(tap_dance_state_t *state, void *user_data);
+void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_alt_lyr_reset(tap_dance_state_t *state, void *user_data);
+void td_shft_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_shft_lyr_reset(tap_dance_state_t *state, void *user_data);
+void td_gui_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_gui_lyr_reset(tap_dance_state_t *state, void *user_data);
+void td_meh_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_meh_lyr_reset(tap_dance_state_t *state, void *user_data);
+void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data);
+void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data);
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_CTL_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctl_lyr_finished, td_ctl_lyr_reset),
+    [TD_ALT_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_alt_lyr_finished, td_alt_lyr_reset),
+    [TD_GUI_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_gui_lyr_finished, td_gui_lyr_reset),
+    [TD_MEH_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_meh_lyr_finished, td_meh_lyr_reset),
+    [TD_HYPR_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_hypr_lyr_finished, td_hypr_lyr_reset),
+    [TD_SHFT_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_shft_lyr_finished, td_shft_lyr_reset)
+};
+
+static bool ctl_was_held = false;
+static bool alt_was_held = false;
+static bool shft_was_held = false;
+static bool meh_was_held = false;
+static bool gui_was_held = false;
+static bool hypr_was_held = false;
+
+
+void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap activate OSM key
+    ctl_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_LCTL));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        ctl_was_held = true;
+        layer_on(_FUNCTION);
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_ctl_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(ctl_was_held)) {
+        layer_off(_FUNCTION);
+    }
+}
+
+void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap activate OSM key
+    alt_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_LALT));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        layer_on(_APPCONTROL);
+        alt_was_held = true;
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_alt_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(alt_was_held)) {
+        layer_off(_APPCONTROL);
+    }
+}
+
+void td_shft_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap -
+    shft_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_LSFT));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        layer_on(_NUMBSYM);
+        shft_was_held = true;
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_shft_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(shft_was_held)) {
+        layer_off(_NUMBSYM);
+    }
+}
+
+void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap activate OSM key
+    hypr_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_HYPR));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        layer_on(_APPCONTROL);
+        hypr_was_held = true;
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(hypr_was_held)) {
+        layer_off(_APPCONTROL);
+    }
+}
+
+void td_gui_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap activate OSM key
+    gui_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_LGUI));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        layer_on(_FUNCTION);
+        gui_was_held = true;
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_gui_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(gui_was_held)) {
+        layer_off(_FUNCTION);
+    }
+}
+
+void td_meh_lyr_finished(tap_dance_state_t *state, void *user_data) {
+    // Single tap activate OSM key
+    meh_was_held = false;
+    if (state->count == 1 && !state->pressed) {
+        add_oneshot_mods(MOD_BIT(KC_MEH));
+    }
+    // Hold -> Layer on
+    else if (state->pressed) {
+        layer_on(_NUMBSYM);
+        meh_was_held = true;
+    }
+}
+
+// Tap-dance reset: if it was a hold, turn that layer back off when key is released
+void td_meh_lyr_reset(tap_dance_state_t *state, void *user_data) {
+    if ((state->pressed)||(meh_was_held)) {
+        layer_off(_NUMBSYM);
+    }
+}
+
+
 // Functions
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
@@ -331,12 +479,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_RALT_M:
-        case KC_LALT_V:
+        case KC_M:
+        case KC_V:
             return 500;
-        case KC_LGUI_T:
+        case KC_T:
             return 600;
-        case KC_RGUI_Y:
+        case KC_Y:
             return 750;
         default:
             return TAPPING_TERM;
@@ -349,19 +497,7 @@ bool duo_key_combo_right;
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-/*
-    mod_state = get_mods();
 
-    if (mod_state) {
-        if (record->event.pressed) {
-            if((is_left(keycode) && is_left_mod(mod_state)) ||
-               (is_right(keycode) && is_right_mod(mod_state)))
-               {
-                    clear_mods();
-               }
-        }
-    }
-*/
   switch (keycode) {
 
     case BROWSWEROPEN:
@@ -420,36 +556,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             duo_key_combo_left = true;
         }
         break;
-    case OSM_RSHIFT:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_RSFT);
-        }
-        break;
-    case OSM_RCTRL:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_RCTL);
-        }
-        break;
-    case OSM_RALT:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_RALT);
-        }
-        break;
-    case OSM_HYPER:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_HYPR);
-        }
-        break;
-    case OSM_LGUI:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_LGUI);
-        }
-        break;
-    case OSM_MEH:
-        if (record->event.pressed) {
-            add_oneshot_mods(MOD_MEH);
-        }
-        break;
     default:
        if (duo_key_combo_left && !record->event.pressed && (keycode != ONESHOT_SYM_LSHIFT)) {
           clear_oneshot_layer_state(ONESHOT_PRESSED);
@@ -468,16 +574,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALPHA] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-   //LT(3,OSM_HYPER), KC_Q, KC_W,    KC_E,    KC_R,  KC_LGUI_T,                     KC_RGUI_Y,     KC_U,        KC_I,    KC_O,   KC_P,    LT(3,OSM_RALT),
-  OSM(MOD_HYPR), KC_Q, KC_W,    KC_E,    KC_R,  KC_LGUI_T,                     KC_RGUI_Y,     KC_U,        KC_I,    KC_O,   KC_P,    OSM(MOD_RALT),
+  TD(TD_HYPR_LYR), KC_Q, KC_W,    KC_E,    KC_R,  KC_T,                         KC_Y,     KC_U,        KC_I,    KC_O,   KC_P,    TD(TD_ALT_LYR),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //LT(2,OSM_LGUI), KC_A, KC_S,    KC_D,    KC_LCTRL_F, KC_LSHCTRL_G,             KC_RSHCTRL_H,  KC_RCTRL_J,  KC_K,    KC_L,   KC_SCLN, LT(2,OSM_RCTRL),
-  OSM(MOD_LGUI), KC_A, KC_S,    KC_D,    KC_LCTRL_F, KC_LSHCTRL_G,             KC_RSHCTRL_H,  KC_RCTRL_J,  KC_K,    KC_L,   KC_SCLN, OSM(MOD_RCTL),
+  TD(TD_GUI_LYR), KC_A, KC_S,    KC_D,    KC_LCTRL_F, KC_LSHCTRL_G,             KC_RSHCTRL_H,  KC_RCTRL_J,  KC_K,    KC_L,   KC_SCLN, TD(TD_CTL_LYR),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  //LT(1,OSM_MEH),  KC_Z, KC_X,    KC_C,    KC_LALT_V,  KC_B,                     KC_N,    KC_RALT_M,   KC_COMM, KC_DOT, KC_SLSH, LT(1,OSM_RSHIFT),
-  OSM(MOD_MEH),  KC_Z, KC_X,    KC_C,    KC_LALT_V,  KC_B,                     KC_N,    KC_RALT_M,   KC_COMM, KC_DOT, KC_SLSH, OSM(MOD_RSFT),
+  TD(TD_MEH_LYR),  KC_Z, KC_X,    KC_C,    KC_V,  KC_B,                         KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, TD(TD_SHFT_LYR),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TAB,   KC_LSFT,  KC_SPC,     KC_ENT,   KC_RSFT, KC_BSPC
+                                        KC_TAB,   KC_LSFT,  KA_LSFP,     KA_RSFEN,   KC_RSFT, KC_BSPC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -495,12 +598,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
     [_FUNCTION] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  /*-*/  KC_F12,    KC_KB_MUTE, KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN, RGUI(KC_L), KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KC_F1,   KC_F2,   KC_F3,               KC_F4,               KC_F5,   /*-*/  KC_F6,     KC_F7,      KC_F8,           KC_F9,             KC_F10,  KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KA_CADEL, KC_LGUI, KC_LALT,             KC_LCTL,             KC_MEH,  /*-*/  KC_HYPR,   KC_RCTL,    KC_RALT,         KC_RGUI, KA_CADEL, KC_TRNS,
+  //,-----------------------------------------------------.            ,-----------------------------------------------------.
+ //    KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  /*-*/        KC_F12, KC_KB_MUTE, KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN, RGUI(KC_L), KC_TRNS,
+     KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  /*-*/        KC_F12, KC_MUTE, KC_VOLU, KC_VOLD, RGUI(KC_L), KC_TRNS,
+  //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
+     KC_TRNS, KC_F1,   KC_F2,   KC_F3,  KC_F4,    KC_F5,   /*-*/       KC_F6,  KC_F7,  KC_F8,   KC_F9,    KC_F10,        KC_TRNS,
+  //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
+     KC_TRNS, KA_CADEL, KC_NO, KC_NO, KC_NO,  KC_NO,  /*-*/     KC_NO,   KC_NO,  KC_NO, KC_NO, KA_CADEL, KC_TRNS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS
                                       //`--------------------------'  `--------------------------'
