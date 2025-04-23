@@ -373,7 +373,7 @@ void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap activate OSM key
     hypr_was_held = false;
     if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_HYPR));
+        add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL)||MOD_BIT(KC_LGUI));
     }
     // Hold -> Layer on
     else if (state->pressed) {
@@ -413,7 +413,7 @@ void td_meh_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap activate OSM key
     meh_was_held = false;
     if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_MEH));
+        add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL));
     }
     // Hold -> Layer on
     else if (state->pressed) {
