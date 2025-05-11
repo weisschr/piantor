@@ -27,6 +27,7 @@
 #define KA_EXCEL    HYPR(KC_X)
 #define KA_SNIP     SGUI(KC_S)
 #define KA_CLIPBRD  RGUI(KC_V)
+#define KA_LOCK     RGUI(KC_L)
 
 // Behavior
 #define KA_CADEL    C(A(KC_DEL))
@@ -598,25 +599,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
     [_FUNCTION] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.            ,-----------------------------------------------------.
- //    KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  /*-*/        KC_F12, KC_KB_MUTE, KC_KB_VOLUME_UP, KC_KB_VOLUME_DOWN, RGUI(KC_L), KC_TRNS,
-     KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  /*-*/        KC_F12, KC_MUTE, KC_VOLU, KC_VOLD, RGUI(KC_L), KC_TRNS,
+  //,-----------------------------------------------------.           ,-----------------------------------------------------.
+     KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,     /*-*/    KC_F12,  KC_VOLU, KC_VOLD, KC_MUTE, KA_LOCK, KC_TRNS,
   //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KC_F1,   KC_F2,   KC_F3,  KC_F4,    KC_F5,   /*-*/       KC_F6,  KC_F7,  KC_F8,   KC_F9,    KC_F10,        KC_TRNS,
+     KC_TRNS, KC_F1,   KC_F2,   KC_F3,  KC_F4,    KC_F5,     /*-*/     KC_F6,   KC_F7,  KC_F8,   KC_F9,    KC_F10,  KC_TRNS,
   //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KA_CADEL, KC_NO, KC_NO, KC_NO,  KC_NO,  /*-*/     KC_NO,   KC_NO,  KC_NO, KC_NO, KA_CADEL, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS
+     KC_TRNS, KA_CADEL, KC_NO,  KC_NO,   KC_NO,  KC_NO,         /*-*/  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KA_CADEL, KC_TRNS,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
+                                        KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
                                       //`--------------------------'  `--------------------------'
   ),
 
     [_APPCONTROL] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TRNS, KC_NO,     KC_NO,  KA_LINKEDIN,  KA_OUTLOOK, KA_TEAMS, /*-*/ KA_FILEMGR,  KC_BRIU,     KC_BRID,    KC_NO,   KC_NO, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS, QK_BOOT,   KC_NO,  CONTROLPAN,   KA_POWERPT, KA_WORD,  /*-*/ KC_CALC,     KA_TASKMGR,  KA_RUN,     KC_NO,   QK_BOOT, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TRNS, QK_REBOOT, KC_NO,  BROWSWEROPEN, KA_EMOJIS,  KA_EXCEL, /*-*/ KA_SNIP,     KA_CLIPBRD,  MYCOMPUTER, KC_NO,   QK_REBOOT, KC_TRNS,
+      KC_TRNS, KC_NO,     KC_NO, KA_EMOJIS,  KA_RUN,     KA_TEAMS, /*-*/ KA_POWERPT, KC_BRIU,    KC_BRID,     KC_NO, KC_NO,     KC_TRNS,
+      KC_TRNS, QK_BOOT,   KC_NO, CONTROLPAN, KA_FILEMGR, KA_WORD,  /*-*/ KC_CALC,    KA_TASKMGR, KA_LINKEDIN, KC_NO, QK_BOOT,   KC_TRNS,
+      KC_TRNS, QK_REBOOT, KC_NO, KA_CLIPBRD, KA_OUTLOOK, KA_EXCEL, /*-*/ KA_SNIP,    KC_NO,      MYCOMPUTER,  KC_NO, QK_REBOOT, KC_TRNS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                         KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS
                                       //`--------------------------'  `--------------------------'
