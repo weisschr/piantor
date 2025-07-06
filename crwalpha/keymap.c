@@ -3,9 +3,6 @@
 
 #include QMK_KEYBOARD_H
 
-#define KA_LSFP   LSFT_T(KC_SPC)
-#define KA_RSFEN  RSFT_T(KC_ENT)
-
 // Fingers
 #define KC_LCTRL_F    MT(MOD_LCTL, KC_F)
 #define KC_RCTRL_J    MT(MOD_RCTL, KC_J)
@@ -313,13 +310,24 @@ static bool hypr_was_held = false;
 void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap activate OSM key
     ctl_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LCTL));
-    }
-    // Hold -> Layer on
-    else if (state->pressed) {
-        ctl_was_held = true;
-        layer_on(_FUNCTION);
+    switch(state->count){
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LCTL));
+            }
+            // Hold -> Layer on
+            else if (state->pressed) {
+                ctl_was_held = true;
+                layer_on(_FUNCTION);
+            }
+            break;
+        case 2:
+            layer_invert(_FUNCTION);
+            ctl_was_held = false;
+            break;
+        default:
+            ctl_was_held = false;
+            break;
     }
 }
 
@@ -331,15 +339,24 @@ void td_ctl_lyr_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data) {
-    // Single tap activate OSM key
     alt_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LALT));
-    }
-    // Hold -> Layer on
-    else if (state->pressed) {
-        layer_on(_APPCONTROL);
-        alt_was_held = true;
+    switch(state->count) {
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LALT));
+            }
+            else if (state->pressed) {
+                layer_on(_APPCONTROL);
+                alt_was_held = true;
+            }
+            break;
+        case 2:
+            layer_invert(_APPCONTROL);               // same as TG(1)
+            alt_was_held = false;           // not a momentary hold
+            break;
+        default:
+            alt_was_held = false;
+            break;
     }
 }
 
@@ -353,14 +370,24 @@ void td_alt_lyr_reset(tap_dance_state_t *state, void *user_data) {
 void td_shft_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap -
     shft_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LSFT));
+    switch (state->count) {
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
+            else if (state->pressed) {
+                layer_on(_NUMBSYM);
+                shft_was_held = true;
+            }
+        case 2:
+            layer_invert(_NUMBSYM);
+            shft_was_held = false;
+            break;
+        default:
+            shft_was_held = false;
+            break;
     }
-    // Hold -> Layer on
-    else if (state->pressed) {
-        layer_on(_NUMBSYM);
-        shft_was_held = true;
-    }
+    
 }
 
 // Tap-dance reset: if it was a hold, turn that layer back off when key is released
@@ -454,10 +481,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
       case ONESHOT_FUNC_COMBO:
       case ONESHOT_SYM_COMBO:
       case MOUSE_COMBO:
-        return 400;
       case WINCLOSE_COMBO:
       case APPCLOSE_COMBO:
-        return 300;
+        return 500;
       default:
         return COMBO_TERM;
     }
@@ -480,13 +506,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_M:
-        case KC_V:
-            return 500;
-        case KC_T:
+        case KC_F:
+        case KC_J:
             return 600;
-        case KC_Y:
-            return 750;
+        case KC_G:
+        case KC_H:
+            return 800;
         default:
             return TAPPING_TERM;
     }
@@ -581,7 +606,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
   TD(TD_MEH_LYR),  KC_Z, KC_X,    KC_C,    KC_V,  KC_B,                         KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, TD(TD_SHFT_LYR),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TAB,   KC_LSFT,  KA_LSFP,     KA_RSFEN,   KC_RSFT, KC_BSPC
+                                        KC_TAB,   KC_LSFT,  KC_SPACE,   KC_ENTER, KC_RSFT, KC_BSPC
                                       //`--------------------------'  `--------------------------'
 
   ),
