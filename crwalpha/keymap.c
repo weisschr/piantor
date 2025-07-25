@@ -379,9 +379,10 @@ void td_shft_lyr_finished(tap_dance_state_t *state, void *user_data) {
                 layer_on(_NUMBSYM);
                 shft_was_held = true;
             }
+            break;
         case 2:
             layer_invert(_NUMBSYM);
-            shft_was_held = false;
+             = false;
             break;
         default:
             shft_was_held = false;
@@ -483,6 +484,14 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
       case MOUSE_COMBO:
       case WINCLOSE_COMBO:
       case APPCLOSE_COMBO:
+      case CHROME_COMBO:
+      case MYCOMPUTER_COMBO:
+      case CONTROLPAN_COMBO:
+      case EDGE_COMBO:
+      case VSCODE_COMBO:
+      case NOTEPADPP_COMBO:
+      case BOOT_LEFT:
+      case BOOT_RIGHT:
         return 500;
       default:
         return COMBO_TERM;
