@@ -1,6 +1,3 @@
-// Copyright 2023 QMK
-// SPDX-License-Identifier: GPL-2.0-or-later
-
 #include QMK_KEYBOARD_H
 
 // Fingers
@@ -30,7 +27,6 @@
 #define KA_CADEL    C(A(KC_DEL))
 
 // Browser
-
 #define CR_NTAB     C(KC_T)
 #define CR_NINCOG   RCS(KC_T)
 #define CR_HOME     A(KC_HOME)
@@ -41,7 +37,6 @@
 #define CR_INGWIN   RCS(KC_N)
 
 //-------------------------------------------------------------------------------
-
 enum layers {
     _ALPHA,
     _NUMBSYM,
@@ -143,17 +138,16 @@ const uint16_t PROGMEM rcurly_combo[]   = {KC_M, KC_DOT, COMBO_END};
 const uint16_t PROGMEM apps_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM osl_apps_combo[] = {KC_Y, KC_I, COMBO_END};
 
-const uint16_t PROGMEM numb_combo[]     = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
-const uint16_t PROGMEM osl_numb_combo[] = {KC_RSHCTRL_H, KC_K, COMBO_END};
+const uint16_t PROGMEM numb_combo[]            = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
+const uint16_t PROGMEM osl_numb_combo[]        = {KC_RSHCTRL_H, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_lshift_combo[] = {KC_RSHCTRL_H, KC_RCTRL_J, COMBO_END};
 
 const uint16_t PROGMEM func_combo[]     = {KC_N, KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM osl_func_combo[] = {KC_N, KC_COMM, COMBO_END};
 
-const uint16_t PROGMEM default_combo[]     = {KC_RCTRL_J, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM default_combo[] = {KC_RCTRL_J, KC_K, KC_L, COMBO_END};
 
-const uint16_t PROGMEM mouse_combo[]       = {KC_W, KC_E,  KC_R, KC_T, COMBO_END};
-
+const uint16_t PROGMEM mouse_combo[]   = {KC_W, KC_E,  KC_R, KC_T, COMBO_END};
 
 //--------------------------------------------------------------------------------
 // Behavioral combos
@@ -204,7 +198,6 @@ const uint16_t PROGMEM middle_mouse_combo[] = {KC_E, KC_T, COMBO_END};
 combo_t key_combos[] = {
 
 //------------- Symbol combos
-
 [DOUBLEQ_COMBO]      = COMBO(doubleq_combo, KC_DQUO),
 [SINGLEQ_COMBO]      = COMBO(singleq_combo, KC_QUOT),
 [LPAR_COMBO]         = COMBO(lpar_combo, KC_LPRN),
@@ -215,19 +208,17 @@ combo_t key_combos[] = {
 [RCURLY_COMBO]       = COMBO(rcurly_combo, KC_RCBR),
 
 //------------- Layer combos
-
-[APP_COMBO]          = COMBO(apps_combo, TG(_APPCONTROL)),
-[NUMB_COMBO]         = COMBO(numb_combo, TG(_NUMBSYM)),
-[FUNC_COMBO]         = COMBO(func_combo, TG(_FUNCTION)),
-[ONESHOT_SYM_COMBO]  = COMBO(osl_numb_combo, OSL(_NUMBSYM)),
+[APP_COMBO]                 = COMBO(apps_combo, TG(_APPCONTROL)),
+[NUMB_COMBO]                = COMBO(numb_combo, TG(_NUMBSYM)),
+[FUNC_COMBO]                = COMBO(func_combo, TG(_FUNCTION)),
+[ONESHOT_SYM_COMBO]         = COMBO(osl_numb_combo, OSL(_NUMBSYM)),
 [ONESHOT_SYM_LSHIFT_COMBO]  = COMBO(osl_numb_lshift_combo, ONESHOT_SYM_LSHIFT),
-[ONESHOT_FUNC_COMBO] = COMBO(osl_func_combo, OSL(_FUNCTION)),
-[ONESHOT_APP_COMBO]  = COMBO(osl_apps_combo, OSL(_APPCONTROL)),
-[DEFAULT_COMBO]      = COMBO(default_combo, TO(_ALPHA)),
-[MOUSE_COMBO]        = COMBO(mouse_combo, TG(_MOUSE)),
+[ONESHOT_FUNC_COMBO]        = COMBO(osl_func_combo, OSL(_FUNCTION)),
+[ONESHOT_APP_COMBO]         = COMBO(osl_apps_combo, OSL(_APPCONTROL)),
+[DEFAULT_COMBO]             = COMBO(default_combo, TO(_ALPHA)),
+[MOUSE_COMBO]               = COMBO(mouse_combo, TG(_MOUSE)),
 
 //------------- Extras
-
 [LESC_COMBO]         = COMBO(lesc_combo, KC_ESC),
 [DEL_COMBO]          = COMBO(del_combo, KC_DEL),
 [WINCLOSE_COMBO]     = COMBO(winclose_combo, LCTL(KC_F4)),
@@ -242,23 +233,18 @@ combo_t key_combos[] = {
 [END_COMBO]          = COMBO(end_combo, KC_END),
 
 //------------- Boot combos
-
 [BOOT_LEFT] = COMBO(boot_left_combo,QK_BOOT),
 [BOOT_RIGHT] = COMBO(boot_right_combo,QK_BOOT),
 
 //------------- Teams toggles
-
 [TEAMS_MUTE]         = COMBO(teams_mute, RCS(KC_M)),
 [TEAMS_VIDTOG]       = COMBO(teams_vidtog, RCS(KC_O)),
 
 //------------- Cap combos
-
 [CAPLOCK_COMBO]      = COMBO(caplock_combo, KC_CAPS),
 [CAPSWORD_COMBO]     = COMBO(capsword_combo, CW_TOGG),
 
-
 //------------ Macro combos
-
 [CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
 [MYCOMPUTER_COMBO] = COMBO(mycomputer_combo, MYCOMPUTER),
 [CONTROLPAN_COMBO] = COMBO(controlpan_combo, CONTROLPAN),
@@ -267,16 +253,15 @@ combo_t key_combos[] = {
 [NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),
 
 // Mouse combos
-
 [MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, KC_MS_BTN1),
 [MOUSE_RIGHT_CLICK]  = COMBO(right_mouse_combo, KC_MS_BTN2),
 [MOUSE_MIDDLE_CLICK] = COMBO(middle_mouse_combo, KC_MS_BTN3),
-
 };
 
 // end combos
-//-------------------------------------------------------------------------------
 
+//-------------------------------------------------------------------------------
+// Tap dance setup
 void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data);
 void td_ctl_lyr_reset(tap_dance_state_t *state, void *user_data);
 void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data);
@@ -305,7 +290,6 @@ static bool shft_was_held = false;
 static bool meh_was_held = false;
 static bool gui_was_held = false;
 static bool hypr_was_held = false;
-
 
 void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap activate OSM key
@@ -360,7 +344,6 @@ void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-// Tap-dance reset: if it was a hold, turn that layer back off when key is released
 void td_alt_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(alt_was_held)) {
         layer_off(_APPCONTROL);
@@ -382,16 +365,14 @@ void td_shft_lyr_finished(tap_dance_state_t *state, void *user_data) {
             break;
         case 2:
             layer_invert(_NUMBSYM);
-             = false;
+            shft_was_held = false;
             break;
         default:
             shft_was_held = false;
             break;
     }
-    
 }
 
-// Tap-dance reset: if it was a hold, turn that layer back off when key is released
 void td_shft_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(shft_was_held)) {
         layer_off(_NUMBSYM);
@@ -399,19 +380,27 @@ void td_shft_lyr_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
-    // Single tap activate OSM key
     hypr_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL)||MOD_BIT(KC_LGUI));
-    }
-    // Hold -> Layer on
-    else if (state->pressed) {
-        layer_on(_APPCONTROL);
-        hypr_was_held = true;
+    switch (state->count) {
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL)||MOD_BIT(KC_LGUI));
+            }
+            else if (state->pressed) {
+                layer_on(_APPCONTROL);
+                hypr_was_held = true;
+            }
+            break;
+        case 2:
+            layer_invert(_APPCONTROL);
+            hypr_was_held = false;
+            break;
+        default:
+            hypr_was_held = false;
+            break;
     }
 }
 
-// Tap-dance reset: if it was a hold, turn that layer back off when key is released
 void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(hypr_was_held)) {
         layer_off(_APPCONTROL);
@@ -419,19 +408,27 @@ void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 void td_gui_lyr_finished(tap_dance_state_t *state, void *user_data) {
-    // Single tap activate OSM key
     gui_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LGUI));
-    }
-    // Hold -> Layer on
-    else if (state->pressed) {
-        layer_on(_FUNCTION);
-        gui_was_held = true;
+    switch (state->count) {
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LGUI));
+            }
+            else if (state->pressed) {
+                layer_on(_FUNCTION);
+                gui_was_held = true;
+            }
+            break;
+        case 2:
+            layer_invert(_FUNCTION);
+            gui_was_held = false;
+            break;
+        default:
+            gui_was_held = false;
+            break;
     }
 }
 
-// Tap-dance reset: if it was a hold, turn that layer back off when key is released
 void td_gui_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(gui_was_held)) {
         layer_off(_FUNCTION);
@@ -439,36 +436,48 @@ void td_gui_lyr_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 void td_meh_lyr_finished(tap_dance_state_t *state, void *user_data) {
-    // Single tap activate OSM key
     meh_was_held = false;
     if (state->count == 1 && !state->pressed) {
         add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL));
     }
-    // Hold -> Layer on
     else if (state->pressed) {
         layer_on(_NUMBSYM);
         meh_was_held = true;
     }
+    switch (state->count) {
+        case 1:
+            if (!state->pressed) {
+                add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL));
+            }
+            else if (state->pressed) {
+                layer_on(_NUMBSYM);
+                meh_was_held = true;
+            }
+            break;
+        case 2:
+            layer_invert(_NUMBSYM);
+            meh_was_held = false;
+            break;
+        default:
+            meh_was_held = false;
+            break;
+    }
 }
 
-// Tap-dance reset: if it was a hold, turn that layer back off when key is released
 void td_meh_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(meh_was_held)) {
         layer_off(_NUMBSYM);
     }
 }
 
-
-// Functions
+// Other Functions
 
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LSFT_T(KC_SPACE):
         case RSFT_T(KC_ENTER):
-            // Immediately select the hold action when another key is pressed.
-             return true;
+            return true;
         default:
-            // Do not select the hold action when another key is pressed.
             return false;
     }
 }
@@ -498,7 +507,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     }
 }
 
-  bool caps_word_press_user(uint16_t keycode) {
+bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
@@ -530,11 +539,9 @@ uint8_t mod_state;
 bool duo_key_combo_left;
 bool duo_key_combo_right;
 
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch (keycode) {
-
     case BROWSWEROPEN:
         if (record->event.pressed) {
                 SEND_STRING(SS_LGUI("r"));
@@ -605,64 +612,39 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ALPHA] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-  TD(TD_HYPR_LYR), KC_Q, KC_W,    KC_E,    KC_R,  KC_T,                         KC_Y,     KC_U,        KC_I,    KC_O,   KC_P,    TD(TD_ALT_LYR),
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  TD(TD_GUI_LYR), KC_A, KC_S,    KC_D,    KC_LCTRL_F, KC_LSHCTRL_G,             KC_RSHCTRL_H,  KC_RCTRL_J,  KC_K,    KC_L,   KC_SCLN, TD(TD_CTL_LYR),
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  TD(TD_MEH_LYR),  KC_Z, KC_X,    KC_C,    KC_V,  KC_B,                         KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, TD(TD_SHFT_LYR),
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TAB,   KC_LSFT,  KC_SPACE,   KC_ENTER, KC_RSFT, KC_BSPC
-                                      //`--------------------------'  `--------------------------'
-
+    TD(TD_HYPR_LYR), KC_Q, KC_W, KC_E,   KC_R,       KC_T,         KC_Y,         KC_U,       KC_I,    KC_O,   KC_P,    TD(TD_ALT_LYR),
+    TD(TD_GUI_LYR),  KC_A, KC_S, KC_D,   KC_LCTRL_F, KC_LSHCTRL_G, KC_RSHCTRL_H, KC_RCTRL_J, KC_K,    KC_L,   KC_SCLN, TD(TD_CTL_LYR),
+    TD(TD_MEH_LYR),  KC_Z, KC_X, KC_C,   KC_V,       KC_B,         KC_N,         KC_M,       KC_COMM, KC_DOT, KC_SLSH, TD(TD_SHFT_LYR),
+                                 KC_TAB, KC_LSFT,    KC_SPACE,     KC_ENTER,     KC_RSFT,    KC_BSPC
   ),
 
     [_NUMBSYM] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-     KC_TRNS, KC_EXLM, KC_AT,   KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS,  KC_GRV,  KC_BSLS, KC_EQL,  KC_MINS, KC_UNDS,                      KC_QUOT, KC_SCLN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS
-                                      //`--------------------------'  `--------------------------'
+    KC_TRNS, KC_EXLM, KC_AT,   KC_HASH,  KC_DLR, KC_PERC,  KC_CIRC, KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS,
+    KC_TRNS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
+    KC_TRNS, KC_GRV,  KC_BSLS, KC_EQL,  KC_MINS, KC_UNDS,  KC_QUOT, KC_SCLN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                               KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS
   ),
 
     [_FUNCTION] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.           ,-----------------------------------------------------.
-     KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,     /*-*/    KC_F12,  KC_VOLU, KC_VOLD, KC_MUTE, KA_LOCK, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KC_F1,   KC_F2,   KC_F3,  KC_F4,    KC_F5,     /*-*/     KC_F6,   KC_F7,  KC_F8,   KC_F9,    KC_F10,  KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------|           |--------+--------+--------+--------+--------+--------|
-     KC_TRNS, KA_CADEL, KC_NO,  KC_NO,   KC_NO,  KC_NO,         /*-*/  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KA_CADEL, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------|
-                                        KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
-                                      //`--------------------------'  `--------------------------'
+    KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  KC_F12,  KC_VOLU, KC_VOLD, KC_MUTE, KA_LOCK, KC_TRNS,
+    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
+    KC_TRNS, KA_CADEL, KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KA_CADEL, KC_TRNS,
+                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
     [_APPCONTROL] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TRNS, KC_NO,     KC_NO, KA_EMOJIS,  KA_RUN,     KA_TEAMS, /*-*/ KA_POWERPT, KC_BRIU,    KC_BRID,     KC_NO, KC_NO,     KC_TRNS,
-      KC_TRNS, QK_BOOT,   KC_NO, CONTROLPAN, KA_FILEMGR, KA_WORD,  /*-*/ KC_CALC,    KA_TASKMGR, KA_LINKEDIN, KC_NO, QK_BOOT,   KC_TRNS,
-      KC_TRNS, QK_REBOOT, KC_NO, KA_CLIPBRD, KA_OUTLOOK, KA_EXCEL, /*-*/ KA_SNIP,    KC_NO,      MYCOMPUTER,  KC_NO, QK_REBOOT, KC_TRNS,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                        KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS
-                                      //`--------------------------'  `--------------------------'
+    KC_TRNS, KC_NO,     KC_NO, KA_EMOJIS,  KA_RUN,     KA_TEAMS, KA_POWERPT, KC_BRIU,    KC_BRID,     KC_NO, KC_NO,     KC_TRNS,
+    KC_TRNS, QK_BOOT,   KC_NO, CONTROLPAN, KA_FILEMGR, KA_WORD,  KC_CALC,    KA_TASKMGR, KA_LINKEDIN, KC_NO, QK_BOOT,   KC_TRNS,
+    KC_TRNS, QK_REBOOT, KC_NO, KA_CLIPBRD, KA_OUTLOOK, KA_EXCEL, KA_SNIP,    KC_NO,      MYCOMPUTER,  KC_NO, QK_REBOOT, KC_TRNS,
+                               KC_TRNS,    KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS
   ),
 
   [_MOUSE] = LAYOUT_split_3x6_3(
-//,------------------------------------------------------.                           ,-----------------------------------------------------.
-    KC_TRNS, CR_BKMRKS, CR_NTAB, CR_NINCOG, CR_HOME, KC_UP,            /*-*/       KC_PGUP, MS_WHLL, MS_UP,   MS_WHLR, KC_VOLU, KC_TRNS,
-//|---------+----------+--------+----------+-----------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, CR_BKMRK,   MS_BTN1, MS_BTN3,  MS_BTN2,    KC_DOWN,         /*-*/        KC_PGDN, MS_LEFT, MS_DOWN, MS_RGHT, KC_VOLD, KC_TRNS,
-//|---------+----------+--------+----------+-----------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_TRNS, CR_BKBAR, CR_NEWWIN, CR_INGWIN, KC_LEFT,    KC_RIGHT,        /*-*/        KC_HOME, MS_WHLU, MS_WHLD, KC_END,  KC_MUTE, KC_TRNS,
-//|---------+----------+--------+----------+-----------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                            KC_TRNS,    KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS
-                                       //`-------------------------------'  `--------------------------'
-)
+    KC_TRNS, CR_BKMRKS, CR_NTAB,   CR_NINCOG, CR_HOME, KC_UP,    KC_PGUP, MS_WHLL, MS_UP,   MS_WHLR, KC_VOLU, KC_TRNS,
+    KC_TRNS, CR_BKMRK,  MS_BTN1,   MS_BTN3,   MS_BTN2, KC_DOWN,  KC_PGDN, MS_LEFT, MS_DOWN, MS_RGHT, KC_VOLD, KC_TRNS,
+    KC_TRNS, CR_BKBAR,  CR_NEWWIN, CR_INGWIN, KC_LEFT, KC_RIGHT, KC_HOME, MS_WHLU, MS_WHLD, KC_END,  KC_MUTE, KC_TRNS,
+                                   KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS
+  )
 };
