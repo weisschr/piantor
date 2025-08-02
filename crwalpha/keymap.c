@@ -80,12 +80,12 @@ enum layers {
       END_COMBO,
       TEAMS_MUTE,
       TEAMS_VIDTOG,
-      CHROME_COMBO,
+      /* CHROME_COMBO,
       MYCOMPUTER_COMBO,
       CONTROLPAN_COMBO,
       EDGE_COMBO,
       VSCODE_COMBO,
-      NOTEPADPP_COMBO,
+      NOTEPADPP_COMBO,*/
       BOOT_LEFT,
       BOOT_RIGHT,
       ONE_SHOT_CONTROL,
@@ -175,12 +175,12 @@ const uint16_t PROGMEM teams_mute[]       = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM teams_vidtog[]     = {KC_T, KC_Y, COMBO_END};
 
 // Macro Combos
-const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
+/* const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
 const uint16_t PROGMEM mycomputer_combo[] = {KC_C, KC_Y, COMBO_END};
 const uint16_t PROGMEM controlpan_combo[] = {KC_C, KC_N, COMBO_END};
 const uint16_t PROGMEM edge_combo[]       = {KC_C, KC_RCTRL_J, COMBO_END};
 const uint16_t PROGMEM vscode_combo[]     = {KC_C, KC_U, COMBO_END};
-const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END};
+const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END}; */
 
 // Boot combos
 const uint16_t PROGMEM boot_left_combo[]  = {KC_Q, KC_T, COMBO_END};
@@ -245,12 +245,12 @@ combo_t key_combos[] = {
 [CAPSWORD_COMBO]     = COMBO(capsword_combo, CW_TOGG),
 
 //------------ Macro combos
-[CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
+/* [CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
 [MYCOMPUTER_COMBO] = COMBO(mycomputer_combo, MYCOMPUTER),
 [CONTROLPAN_COMBO] = COMBO(controlpan_combo, CONTROLPAN),
 [EDGE_COMBO]       = COMBO(edge_combo, MSEDGE),
 [VSCODE_COMBO]     = COMBO(vscode_combo, VSCODE),
-[NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),
+[NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),*/
 
 // Mouse combos
 [MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, KC_MS_BTN1),
@@ -493,12 +493,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
       case MOUSE_COMBO:
       case WINCLOSE_COMBO:
       case APPCLOSE_COMBO:
-      case CHROME_COMBO:
+/*    case CHROME_COMBO:
       case MYCOMPUTER_COMBO:
       case CONTROLPAN_COMBO:
       case EDGE_COMBO:
       case VSCODE_COMBO:
-      case NOTEPADPP_COMBO:
+      case NOTEPADPP_COMBO:*/
       case BOOT_LEFT:
       case BOOT_RIGHT:
         return 500;
