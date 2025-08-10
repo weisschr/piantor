@@ -5,5 +5,6 @@ EXTRAKEY_ENABLE			= yes
 CAPS_WORD_ENABLE        = yes
 SEND_STRING_ENABLE 		= yes
 COMBO_ENABLE			= yes
+COMBO_TERM_PER_COMBO    = yes
 
 

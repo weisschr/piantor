@@ -80,12 +80,12 @@ enum layers {
       END_COMBO,
       TEAMS_MUTE,
       TEAMS_VIDTOG,
-      /* CHROME_COMBO,
+      CHROME_COMBO,
       MYCOMPUTER_COMBO,
       CONTROLPAN_COMBO,
       EDGE_COMBO,
       VSCODE_COMBO,
-      NOTEPADPP_COMBO,*/
+      NOTEPADPP_COMBO,
       BOOT_LEFT,
       BOOT_RIGHT,
       ONE_SHOT_CONTROL,
@@ -135,8 +135,8 @@ const uint16_t PROGMEM rcurly_combo[]   = {KC_M, KC_DOT, COMBO_END};
 //-------------------------------------------------------------------------------
 // Layer control combos
 
-const uint16_t PROGMEM apps_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM osl_apps_combo[] = {KC_Y, KC_I, COMBO_END};
+const uint16_t PROGMEM app_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM osl_app_combo[] = {KC_Y, KC_I, COMBO_END};
 
 const uint16_t PROGMEM numb_combo[]            = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_combo[]        = {KC_RSHCTRL_H, KC_K, COMBO_END};
@@ -175,12 +175,12 @@ const uint16_t PROGMEM teams_mute[]       = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM teams_vidtog[]     = {KC_T, KC_Y, COMBO_END};
 
 // Macro Combos
-/* const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
+const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
 const uint16_t PROGMEM mycomputer_combo[] = {KC_C, KC_Y, COMBO_END};
 const uint16_t PROGMEM controlpan_combo[] = {KC_C, KC_N, COMBO_END};
 const uint16_t PROGMEM edge_combo[]       = {KC_C, KC_RCTRL_J, COMBO_END};
 const uint16_t PROGMEM vscode_combo[]     = {KC_C, KC_U, COMBO_END};
-const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END}; */
+const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END}; 
 
 // Boot combos
 const uint16_t PROGMEM boot_left_combo[]  = {KC_Q, KC_T, COMBO_END};
@@ -208,13 +208,13 @@ combo_t key_combos[] = {
 [RCURLY_COMBO]       = COMBO(rcurly_combo, KC_RCBR),
 
 //------------- Layer combos
-[APP_COMBO]                 = COMBO(apps_combo, TG(_APPCONTROL)),
+[APP_COMBO]                 = COMBO(app_combo, TG(_APPCONTROL)),
 [NUMB_COMBO]                = COMBO(numb_combo, TG(_NUMBSYM)),
 [FUNC_COMBO]                = COMBO(func_combo, TG(_FUNCTION)),
 [ONESHOT_SYM_COMBO]         = COMBO(osl_numb_combo, OSL(_NUMBSYM)),
 [ONESHOT_SYM_LSHIFT_COMBO]  = COMBO(osl_numb_lshift_combo, ONESHOT_SYM_LSHIFT),
 [ONESHOT_FUNC_COMBO]        = COMBO(osl_func_combo, OSL(_FUNCTION)),
-[ONESHOT_APP_COMBO]         = COMBO(osl_apps_combo, OSL(_APPCONTROL)),
+[ONESHOT_APP_COMBO]         = COMBO(osl_app_combo, OSL(_APPCONTROL)),
 [DEFAULT_COMBO]             = COMBO(default_combo, TO(_ALPHA)),
 [MOUSE_COMBO]               = COMBO(mouse_combo, TG(_MOUSE)),
 
@@ -245,12 +245,12 @@ combo_t key_combos[] = {
 [CAPSWORD_COMBO]     = COMBO(capsword_combo, CW_TOGG),
 
 //------------ Macro combos
-/* [CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
+[CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
 [MYCOMPUTER_COMBO] = COMBO(mycomputer_combo, MYCOMPUTER),
 [CONTROLPAN_COMBO] = COMBO(controlpan_combo, CONTROLPAN),
 [EDGE_COMBO]       = COMBO(edge_combo, MSEDGE),
 [VSCODE_COMBO]     = COMBO(vscode_combo, VSCODE),
-[NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),*/
+[NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),
 
 // Mouse combos
 [MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, KC_MS_BTN1),
@@ -284,12 +284,69 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_SHFT_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_shft_lyr_finished, td_shft_lyr_reset)
 };
 
+// Key Control variables
+
+const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
+        [DOUBLEQ_COMBO] = 100,
+        [SINGLEQ_COMBO] = 100,
+        [LPAR_COMBO] = 100,
+        [RPAR_COMBO] = 100,
+        [LBRACE_COMBO] = 100,
+        [RBRACE_COMBO] = 100,
+        [LCURLY_COMBO] = 100,
+        [RCURLY_COMBO] = 100,
+        [LESC_COMBO] = 100,
+        [DEFAULT_COMBO] = 100,
+        [MOUSE_COMBO] = 100,
+        [NUMB_COMBO] = 1000,
+        [FUNC_COMBO] = 1000,
+        [APP_COMBO] = 1000,
+        [ONESHOT_SYM_COMBO] = 100,
+        [ONESHOT_SYM_LSHIFT_COMBO] = 100,
+        [ONESHOT_FUNC_COMBO] = 100,
+        [ONESHOT_APP_COMBO] = 100,
+        [DEL_COMBO] = 100,
+        [WINCLOSE_COMBO] = 1200,
+        [APPCLOSE_COMBO] = 1200,
+        [CAPLOCK_COMBO] = 100,
+        [CAPSWORD_COMBO] = 100,
+        [LEFTARROW_COMBO] = 100,
+        [RIGHTARROW_COMBO] = 100,
+        [UPARROW_COMBO] = 100,
+        [DOWNARROW_COMBO] = 100,
+        [PAGEUP_COMBO] = 100,
+        [PAGEDN_COMBO] = 100,
+        [HOME_COMBO] = 100,
+        [END_COMBO] = 100,
+        [TEAMS_MUTE] = 100,
+        [TEAMS_VIDTOG] = 100,
+        [BOOT_LEFT] = 3000,
+        [BOOT_RIGHT] = 3000,
+        [ONE_SHOT_CONTROL] = 100,
+        [ONE_SHOT_ALT] = 100,
+        [ONE_SHOT_SHIFT] = 100,
+        [MOUSE_LEFT_CLICK] = 100,
+        [MOUSE_RIGHT_CLICK] = 100,
+        [MOUSE_MIDDLE_CLICK] = 100,
+        [CHROME_COMBO] = 1200,
+        [MYCOMPUTER_COMBO] = 1200,
+        [CONTROLPAN_COMBO] = 1200,
+        [EDGE_COMBO] = 1200,
+        [VSCODE_COMBO] = 1200,
+        [NOTEPADPP_COMBO] = 1200,
+      };
+
 static bool ctl_was_held = false;
 static bool alt_was_held = false;
 static bool shft_was_held = false;
 static bool meh_was_held = false;
 static bool gui_was_held = false;
 static bool hypr_was_held = false;
+uint32_t last_keypress_time = 0;  // Used to control minimum idle time for combos
+
+//static uint8_t mod_state = 0;
+static bool duo_key_combo_left = false;
+static bool duo_key_combo_right = false;
 
 void td_ctl_lyr_finished(tap_dance_state_t *state, void *user_data) {
     // Single tap activate OSM key
@@ -484,25 +541,34 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
   switch (index) {
-      case APP_COMBO:
-      case FUNC_COMBO:
-      case NUMB_COMBO:
-      case ONESHOT_APP_COMBO:
-      case ONESHOT_FUNC_COMBO:
-      case ONESHOT_SYM_COMBO:
-      case MOUSE_COMBO:
-      case WINCLOSE_COMBO:
-      case APPCLOSE_COMBO:
-/*    case CHROME_COMBO:
-      case MYCOMPUTER_COMBO:
-      case CONTROLPAN_COMBO:
-      case EDGE_COMBO:
-      case VSCODE_COMBO:
-      case NOTEPADPP_COMBO:*/
-      case BOOT_LEFT:
-      case BOOT_RIGHT:
-        return 500;
-      default:
+    case DOUBLEQ_COMBO:
+    case SINGLEQ_COMBO:
+    case LPAR_COMBO:
+    case RPAR_COMBO:
+    case WINCLOSE_COMBO:
+    case APPCLOSE_COMBO:
+    case LESC_COMBO:
+    case EDGE_COMBO:
+    case VSCODE_COMBO:
+    case NOTEPADPP_COMBO:
+        return 10;
+    case CHROME_COMBO:
+    case MYCOMPUTER_COMBO:
+    case CONTROLPAN_COMBO:
+        return 15;
+    case LEFTARROW_COMBO:
+    case RIGHTARROW_COMBO:
+    case DOWNARROW_COMBO:
+    case UPARROW_COMBO:
+    case NUMB_COMBO:
+    case APP_COMBO:
+    case FUNC_COMBO:
+        return 100;
+    case BOOT_LEFT:
+    case BOOT_RIGHT:
+    case MOUSE_COMBO:
+        return 200;
+    default:
         return COMBO_TERM;
     }
 }
@@ -535,80 +601,89 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-uint8_t mod_state;
-bool duo_key_combo_left;
-bool duo_key_combo_right;
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (timer_elapsed32(last_keypress_time) < combo_idle_delay_ms[combo_index]) {
+        return false;
+    }
+
+    return true;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  switch (keycode) {
-    case BROWSWEROPEN:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("CHROME\n");
-        }
-        break;
-    case CONTROLPAN:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("Control\n");
-        }
-        break;
-    case MYCOMPUTER:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("Shell:MyComputerFolder\n");
-        }
-        break;
-    case VSCODE:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("CODE\n");
-        }
-        break;
-    case MSEDGE:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("MICROSOFT-EDGE:\n");
-        }
-        break;
-    case NOTEPADPP:
-        if (record->event.pressed) {
-                SEND_STRING(SS_LGUI("r"));
-                wait_ms(250);
-                SEND_STRING("NOTEPAD++\n");
-        }
-        break;
-    case ONESHOT_SYM_RSHIFT:
-        if (record->event.pressed) {
-            set_oneshot_mods(MOD_RSFT);
-            set_oneshot_layer(_NUMBSYM, ONESHOT_START);
-            duo_key_combo_right = true;
-        }
-        break;
-    case ONESHOT_SYM_LSHIFT:
-        if (record->event.pressed) {
-            set_oneshot_mods(MOD_LSFT);
-            set_oneshot_layer(_NUMBSYM, ONESHOT_START);
-            duo_key_combo_left = true;
-        }
-        break;
-    default:
-       if (duo_key_combo_left && !record->event.pressed && (keycode != ONESHOT_SYM_LSHIFT)) {
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
-          duo_key_combo_left = false;
-        }
-        if (duo_key_combo_right && !record->event.pressed && (keycode != ONESHOT_SYM_RSHIFT)) {
-          clear_oneshot_layer_state(ONESHOT_PRESSED);
-          duo_key_combo_right = false;
-        }
-      return true; // Process all other keycodes normally.
-  }
+    // To control minimum idle time for combos
+    if (record->event.pressed) {
+        last_keypress_time = timer_read32();
+    }
+
+    switch (keycode) {
+        case BROWSWEROPEN:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("CHROME\n");
+            }
+            break;
+        case CONTROLPAN:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("Control\n");
+            }
+            break;
+        case MYCOMPUTER:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("Shell:MyComputerFolder\n");
+            }
+            break;
+        case VSCODE:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("CODE\n");
+            }
+            break;
+        case MSEDGE:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("MICROSOFT-EDGE:\n");
+            }
+            break;
+        case NOTEPADPP:
+            if (record->event.pressed) {
+                    SEND_STRING(SS_LGUI("r"));
+                    wait_ms(250);
+                    SEND_STRING("NOTEPAD++\n");
+            }
+            break;
+        case ONESHOT_SYM_RSHIFT:
+            if (record->event.pressed) {
+                set_oneshot_mods(MOD_RSFT);
+                set_oneshot_layer(_NUMBSYM, ONESHOT_START);
+                duo_key_combo_right = true;
+            }
+            break;
+        case ONESHOT_SYM_LSHIFT:
+            if (record->event.pressed) {
+                set_oneshot_mods(MOD_LSFT);
+                set_oneshot_layer(_NUMBSYM, ONESHOT_START);
+                duo_key_combo_left = true;
+            }
+            break;
+        default:
+        if (duo_key_combo_left && !record->event.pressed && (keycode != ONESHOT_SYM_LSHIFT)) {
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
+            duo_key_combo_left = false;
+            }
+            if (duo_key_combo_right && !record->event.pressed && (keycode != ONESHOT_SYM_RSHIFT)) {
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
+            duo_key_combo_right = false;
+            }
+        return true; // Process all other keycodes normally.
+    }
   return true;
 }
 
