@@ -253,9 +253,9 @@ combo_t key_combos[] = {
 [NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),
 
 // Mouse combos
-[MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, KC_MS_BTN1),
-[MOUSE_RIGHT_CLICK]  = COMBO(right_mouse_combo, KC_MS_BTN2),
-[MOUSE_MIDDLE_CLICK] = COMBO(middle_mouse_combo, KC_MS_BTN3),
+[MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, MS_BTN1),
+[MOUSE_RIGHT_CLICK]  = COMBO(right_mouse_combo, MS_BTN2),
+[MOUSE_MIDDLE_CLICK] = COMBO(middle_mouse_combo, MS_BTN3),
 };
 
 // end combos
