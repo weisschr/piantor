@@ -441,7 +441,7 @@ void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
     switch (state->count) {
         case 1:
             if (!state->pressed) {
-                add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL)||MOD_BIT(KC_LGUI));
+                add_oneshot_mods(MOD_MASK_CSAG);
             }
             else if (state->pressed) {
                 layer_on(_APPCONTROL);
@@ -494,17 +494,10 @@ void td_gui_lyr_reset(tap_dance_state_t *state, void *user_data) {
 
 void td_meh_lyr_finished(tap_dance_state_t *state, void *user_data) {
     meh_was_held = false;
-    if (state->count == 1 && !state->pressed) {
-        add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL));
-    }
-    else if (state->pressed) {
-        layer_on(_NUMBSYM);
-        meh_was_held = true;
-    }
     switch (state->count) {
         case 1:
             if (!state->pressed) {
-                add_oneshot_mods(MOD_BIT(KC_LALT)||MOD_BIT(KC_LSFT)||MOD_BIT(KC_LCTL));
+                add_oneshot_mods(MOD_MASK_CSA);
             }
             else if (state->pressed) {
                 layer_on(_NUMBSYM);
