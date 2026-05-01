@@ -41,7 +41,6 @@ enum layers {
     _ALPHA,
     _NUMBSYM,
     _FUNCTION,
-    _APPCONTROL,
     _MOUSE,
     LAYER_LENGTH
   };
@@ -60,11 +59,10 @@ enum layers {
       MOUSE_COMBO,
       NUMB_COMBO,
       FUNC_COMBO,
-      APP_COMBO,
       ONESHOT_SYM_COMBO,
       ONESHOT_SYM_LSHIFT_COMBO,
       ONESHOT_FUNC_COMBO,
-      ONESHOT_APP_COMBO,
+      ONESHOT_MOUSE_COMBO,
       DEL_COMBO,
       WINCLOSE_COMBO,
       APPCLOSE_COMBO,
@@ -80,12 +78,6 @@ enum layers {
       END_COMBO,
       TEAMS_MUTE,
       TEAMS_VIDTOG,
-      CHROME_COMBO,
-      MYCOMPUTER_COMBO,
-      CONTROLPAN_COMBO,
-      EDGE_COMBO,
-      VSCODE_COMBO,
-      NOTEPADPP_COMBO,
       BOOT_LEFT,
       BOOT_RIGHT,
       ONE_SHOT_CONTROL,
@@ -98,13 +90,7 @@ enum layers {
   };
 
   enum custom_keycodes {
-      BROWSWEROPEN = SAFE_RANGE,
-      CONTROLPAN,
-      NOTEPADPP,
-      MSEDGE,
-      VSCODE,
-      MYCOMPUTER,
-      ONESHOT_SYM_LSHIFT,
+      ONESHOT_SYM_LSHIFT = SAFE_RANGE,
       ONESHOT_SYM_RSHIFT,
       CUSTOM_LENGTH
   };
@@ -135,19 +121,17 @@ const uint16_t PROGMEM rcurly_combo[]   = {KC_M, KC_DOT, COMBO_END};
 //-------------------------------------------------------------------------------
 // Layer control combos
 
-const uint16_t PROGMEM app_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM osl_app_combo[] = {KC_Y, KC_I, COMBO_END};
+const uint16_t PROGMEM func_combo[]       = {KC_Y, KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM osl_func_combo[] = {KC_Y, KC_I, COMBO_END};
 
 const uint16_t PROGMEM numb_combo[]            = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_combo[]        = {KC_RSHCTRL_H, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_lshift_combo[] = {KC_RSHCTRL_H, KC_RCTRL_J, COMBO_END};
 
-const uint16_t PROGMEM func_combo[]     = {KC_N, KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM osl_func_combo[] = {KC_N, KC_COMM, COMBO_END};
+const uint16_t PROGMEM mouse_combo[]     = {KC_N, KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM osl_mouse_combo[] = {KC_N, KC_COMM, COMBO_END};
 
 const uint16_t PROGMEM default_combo[] = {KC_RCTRL_J, KC_K, KC_L, COMBO_END};
-
-const uint16_t PROGMEM mouse_combo[]   = {KC_W, KC_E,  KC_R, KC_T, COMBO_END};
 
 //--------------------------------------------------------------------------------
 // Behavioral combos
@@ -173,14 +157,6 @@ const uint16_t PROGMEM end_combo[]        = {KC_B, KC_N, COMBO_END};
 
 const uint16_t PROGMEM teams_mute[]       = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM teams_vidtog[]     = {KC_T, KC_Y, COMBO_END};
-
-// Macro Combos
-const uint16_t PROGMEM chrome_combo[]     = {KC_C, KC_RSHCTRL_H, COMBO_END};
-const uint16_t PROGMEM mycomputer_combo[] = {KC_C, KC_Y, COMBO_END};
-const uint16_t PROGMEM controlpan_combo[] = {KC_C, KC_N, COMBO_END};
-const uint16_t PROGMEM edge_combo[]       = {KC_C, KC_RCTRL_J, COMBO_END};
-const uint16_t PROGMEM vscode_combo[]     = {KC_C, KC_U, COMBO_END};
-const uint16_t PROGMEM notepadpp_combo[]  = {KC_C, KC_M, COMBO_END}; 
 
 // Boot combos
 const uint16_t PROGMEM boot_left_combo[]  = {KC_Q, KC_T, COMBO_END};
@@ -208,15 +184,16 @@ combo_t key_combos[] = {
 [RCURLY_COMBO]       = COMBO(rcurly_combo, KC_RCBR),
 
 //------------- Layer combos
-[APP_COMBO]                 = COMBO(app_combo, TG(_APPCONTROL)),
+
+[DEFAULT_COMBO]             = COMBO(default_combo, TO(_ALPHA)),
 [NUMB_COMBO]                = COMBO(numb_combo, TG(_NUMBSYM)),
 [FUNC_COMBO]                = COMBO(func_combo, TG(_FUNCTION)),
+[MOUSE_COMBO]               = COMBO(mouse_combo, TG(_MOUSE)),
 [ONESHOT_SYM_COMBO]         = COMBO(osl_numb_combo, OSL(_NUMBSYM)),
 [ONESHOT_SYM_LSHIFT_COMBO]  = COMBO(osl_numb_lshift_combo, ONESHOT_SYM_LSHIFT),
 [ONESHOT_FUNC_COMBO]        = COMBO(osl_func_combo, OSL(_FUNCTION)),
-[ONESHOT_APP_COMBO]         = COMBO(osl_app_combo, OSL(_APPCONTROL)),
-[DEFAULT_COMBO]             = COMBO(default_combo, TO(_ALPHA)),
-[MOUSE_COMBO]               = COMBO(mouse_combo, TG(_MOUSE)),
+[ONESHOT_MOUSE_COMBO]       = COMBO(osl_mouse_combo, OSL(_MOUSE)),
+
 
 //------------- Extras
 [LESC_COMBO]         = COMBO(lesc_combo, KC_ESC),
@@ -244,14 +221,6 @@ combo_t key_combos[] = {
 [CAPLOCK_COMBO]      = COMBO(caplock_combo, KC_CAPS),
 [CAPSWORD_COMBO]     = COMBO(capsword_combo, CW_TOGG),
 
-//------------ Macro combos
-[CHROME_COMBO]     = COMBO(chrome_combo, BROWSWEROPEN),
-[MYCOMPUTER_COMBO] = COMBO(mycomputer_combo, MYCOMPUTER),
-[CONTROLPAN_COMBO] = COMBO(controlpan_combo, CONTROLPAN),
-[EDGE_COMBO]       = COMBO(edge_combo, MSEDGE),
-[VSCODE_COMBO]     = COMBO(vscode_combo, VSCODE),
-[NOTEPADPP_COMBO]  = COMBO(notepadpp_combo, NOTEPADPP),
-
 // Mouse combos
 [MOUSE_LEFT_CLICK]   = COMBO(left_mouse_combo, MS_BTN1),
 [MOUSE_RIGHT_CLICK]  = COMBO(right_mouse_combo, MS_BTN2),
@@ -276,10 +245,10 @@ void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data);
 void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data);
 
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_CTL_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctl_lyr_finished, td_ctl_lyr_reset),
-    [TD_ALT_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_alt_lyr_finished, td_alt_lyr_reset),
-    [TD_GUI_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_gui_lyr_finished, td_gui_lyr_reset),
-    [TD_MEH_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_meh_lyr_finished, td_meh_lyr_reset),
+    [TD_CTL_LYR]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctl_lyr_finished, td_ctl_lyr_reset),
+    [TD_ALT_LYR]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_alt_lyr_finished, td_alt_lyr_reset),
+    [TD_GUI_LYR]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_gui_lyr_finished, td_gui_lyr_reset),
+    [TD_MEH_LYR]  = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_meh_lyr_finished, td_meh_lyr_reset),
     [TD_HYPR_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_hypr_lyr_finished, td_hypr_lyr_reset),
     [TD_SHFT_LYR] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_shft_lyr_finished, td_shft_lyr_reset)
 };
@@ -300,11 +269,10 @@ const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
         [MOUSE_COMBO] = 100,
         [NUMB_COMBO] = 1200,
         [FUNC_COMBO] = 1200,
-        [APP_COMBO] = 1200,
         [ONESHOT_SYM_COMBO] = 1200,
         [ONESHOT_SYM_LSHIFT_COMBO] = 1200,
         [ONESHOT_FUNC_COMBO] = 1200,
-        [ONESHOT_APP_COMBO] = 1200,
+        [ONESHOT_MOUSE_COMBO] = 1200,
         [DEL_COMBO] = 100,
         [WINCLOSE_COMBO] = 1200,
         [APPCLOSE_COMBO] = 1200,
@@ -328,12 +296,6 @@ const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
         [MOUSE_LEFT_CLICK] = 100,
         [MOUSE_RIGHT_CLICK] = 100,
         [MOUSE_MIDDLE_CLICK] = 100,
-        [CHROME_COMBO] = 1200,
-        [MYCOMPUTER_COMBO] = 1200,
-        [CONTROLPAN_COMBO] = 1200,
-        [EDGE_COMBO] = 1200,
-        [VSCODE_COMBO] = 1200,
-        [NOTEPADPP_COMBO] = 1200,
       };
 
 static bool ctl_was_held = false;
@@ -387,12 +349,12 @@ void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data) {
                 add_oneshot_mods(MOD_BIT(KC_LALT));
             }
             else if (state->pressed) {
-                layer_on(_APPCONTROL);
+                layer_on(_MOUSE);
                 alt_was_held = true;
             }
             break;
         case 2:
-            layer_invert(_APPCONTROL);               // same as TG(1)
+            layer_invert(_MOUSE);               // same as TG(1)
             alt_was_held = false;           // not a momentary hold
             break;
         default:
@@ -403,7 +365,7 @@ void td_alt_lyr_finished(tap_dance_state_t *state, void *user_data) {
 
 void td_alt_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(alt_was_held)) {
-        layer_off(_APPCONTROL);
+        layer_off(_MOUSE);
     }
 }
 
@@ -444,12 +406,12 @@ void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
                 add_oneshot_mods(MOD_MASK_CSAG);
             }
             else if (state->pressed) {
-                layer_on(_APPCONTROL);
+                layer_on(_MOUSE);
                 hypr_was_held = true;
             }
             break;
         case 2:
-            layer_invert(_APPCONTROL);
+            layer_invert(_MOUSE);
             hypr_was_held = false;
             break;
         default:
@@ -460,7 +422,7 @@ void td_hypr_lyr_finished(tap_dance_state_t *state, void *user_data) {
 
 void td_hypr_lyr_reset(tap_dance_state_t *state, void *user_data) {
     if ((state->pressed)||(hypr_was_held)) {
-        layer_off(_APPCONTROL);
+        layer_off(_MOUSE);
     }
 }
 
@@ -541,20 +503,12 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     case WINCLOSE_COMBO:
     case APPCLOSE_COMBO:
     case LESC_COMBO:
-    case EDGE_COMBO:
-    case VSCODE_COMBO:
-    case NOTEPADPP_COMBO:
         return 10;
-    case CHROME_COMBO:
-    case MYCOMPUTER_COMBO:
-    case CONTROLPAN_COMBO:
-        return 15;
     case LEFTARROW_COMBO:
     case RIGHTARROW_COMBO:
     case DOWNARROW_COMBO:
     case UPARROW_COMBO:
     case NUMB_COMBO:
-    case APP_COMBO:
     case FUNC_COMBO:
         return 100;
     case BOOT_LEFT:
@@ -610,48 +564,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case BROWSWEROPEN:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("CHROME\n");
-            }
-            break;
-        case CONTROLPAN:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("Control\n");
-            }
-            break;
-        case MYCOMPUTER:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("Shell:MyComputerFolder\n");
-            }
-            break;
-        case VSCODE:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("CODE\n");
-            }
-            break;
-        case MSEDGE:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("MICROSOFT-EDGE:\n");
-            }
-            break;
-        case NOTEPADPP:
-            if (record->event.pressed) {
-                    SEND_STRING(SS_LGUI("r"));
-                    wait_ms(250);
-                    SEND_STRING("NOTEPAD++\n");
-            }
-            break;
+        
         case ONESHOT_SYM_RSHIFT:
             if (record->event.pressed) {
                 set_oneshot_mods(MOD_RSFT);
@@ -696,17 +609,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
     [_FUNCTION] = LAYOUT_split_3x6_3(
-    KC_TRNS, KC_MPLY, KC_MSTP, KC_MNXT, KC_MPRV, KC_F11,  KC_F12,  KC_VOLU, KC_VOLD, KC_MUTE, KA_LOCK, KC_TRNS,
-    KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
-    KC_TRNS, KA_CADEL, KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KA_CADEL, KC_TRNS,
-                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  ),
-
-    [_APPCONTROL] = LAYOUT_split_3x6_3(
-    KC_TRNS, KC_NO,     KC_NO, KA_EMOJIS,  KA_RUN,     KA_TEAMS, KA_POWERPT, KC_BRIU,    KC_BRID,     KC_NO, KC_NO,     KC_TRNS,
-    KC_TRNS, QK_BOOT,   KC_NO, CONTROLPAN, KA_FILEMGR, KA_WORD,  KC_CALC,    KA_TASKMGR, KA_LINKEDIN, KC_NO, QK_BOOT,   KC_TRNS,
-    KC_TRNS, QK_REBOOT, KC_NO, KA_CLIPBRD, KA_OUTLOOK, KA_EXCEL, KA_SNIP,    KC_NO,      MYCOMPUTER,  KC_NO, QK_REBOOT, KC_TRNS,
-                               KC_TRNS,    KC_TRNS,    KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_TRNS
+    KC_TRNS, KC_MPLY, KC_MSTP,   KC_MNXT, KC_MPRV, KC_F11,  KC_F12,  KC_MUTE, KC_VOLU, KC_VOLD, KA_LOCK, KC_TRNS,
+    KC_TRNS, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
+    KC_TRNS, QK_BOOT, QK_REBOOT, KC_NO,   KC_NO,   KC_PSCR, KC_CALC, KC_BRIU, KC_BRID, KC_NO,   KA_CADEL, KC_TRNS,
+                                 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
   [_MOUSE] = LAYOUT_split_3x6_3(
