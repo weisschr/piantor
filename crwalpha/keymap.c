@@ -80,9 +80,9 @@ enum layers {
       TEAMS_VIDTOG,
       BOOT_LEFT,
       BOOT_RIGHT,
-      ONE_SHOT_CONTROL,
-      ONE_SHOT_ALT,
-      ONE_SHOT_SHIFT,
+      ONESHOT_CONTROL,
+      ONESHOT_ALT,
+      ONESHOT_SHIFT,
       MOUSE_LEFT_CLICK,
       MOUSE_RIGHT_CLICK,
       MOUSE_MIDDLE_CLICK,
@@ -121,15 +121,15 @@ const uint16_t PROGMEM rcurly_combo[]   = {KC_M, KC_DOT, COMBO_END};
 //-------------------------------------------------------------------------------
 // Layer control combos
 
-const uint16_t PROGMEM func_combo[]       = {KC_Y, KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM osl_func_combo[] = {KC_Y, KC_I, COMBO_END};
+const uint16_t PROGMEM func_combo[]       = {KC_N, KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM osl_func_combo[]   = {KC_N, KC_COMM, COMBO_END};
 
 const uint16_t PROGMEM numb_combo[]            = {KC_RSHCTRL_H, KC_RCTRL_J, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_combo[]        = {KC_RSHCTRL_H, KC_K, COMBO_END};
 const uint16_t PROGMEM osl_numb_lshift_combo[] = {KC_RSHCTRL_H, KC_RCTRL_J, COMBO_END};
 
-const uint16_t PROGMEM mouse_combo[]     = {KC_N, KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM osl_mouse_combo[] = {KC_N, KC_COMM, COMBO_END};
+const uint16_t PROGMEM mouse_combo[]     = {KC_Y, KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM osl_mouse_combo[] = {KC_Y, KC_I, COMBO_END};
 
 const uint16_t PROGMEM default_combo[] = {KC_RCTRL_J, KC_K, KC_L, COMBO_END};
 
@@ -256,46 +256,46 @@ tap_dance_action_t tap_dance_actions[] = {
 // Key Control variables
 
 const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
-        [DOUBLEQ_COMBO] = 100,
-        [SINGLEQ_COMBO] = 100,
-        [LPAR_COMBO] = 100,
-        [RPAR_COMBO] = 100,
-        [LBRACE_COMBO] = 100,
-        [RBRACE_COMBO] = 100,
-        [LCURLY_COMBO] = 100,
-        [RCURLY_COMBO] = 100,
-        [LESC_COMBO] = 100,
-        [DEFAULT_COMBO] = 100,
-        [MOUSE_COMBO] = 100,
-        [NUMB_COMBO] = 1200,
-        [FUNC_COMBO] = 1200,
-        [ONESHOT_SYM_COMBO] = 1200,
+        [DOUBLEQ_COMBO]            = 100,
+        [SINGLEQ_COMBO]            = 100,
+        [LPAR_COMBO]               = 100,
+        [RPAR_COMBO]               = 100,
+        [LBRACE_COMBO]             = 100,
+        [RBRACE_COMBO]             = 100,
+        [LCURLY_COMBO]             = 100,
+        [RCURLY_COMBO]             = 100,
+        [DEFAULT_COMBO]            = 100,
+        [WINCLOSE_COMBO]           = 1200,
+        [APPCLOSE_COMBO]           = 1200,
+        [CAPLOCK_COMBO]            = 100,
+        [CAPSWORD_COMBO]           = 100,
+        [LEFTARROW_COMBO]          = 100,
+        [RIGHTARROW_COMBO]         = 100,
+        [UPARROW_COMBO]            = 100,
+        [DOWNARROW_COMBO]          = 100,
+        [LESC_COMBO]               = 100,
+        [DEL_COMBO]                = 100,
+        [PAGEUP_COMBO]             = 100,
+        [PAGEDN_COMBO]             = 100,
+        [HOME_COMBO]               = 100,
+        [END_COMBO]                = 100,
+        [TEAMS_MUTE]               = 100,
+        [TEAMS_VIDTOG]             = 100,
+        [BOOT_LEFT]                = 3000,
+        [BOOT_RIGHT]               = 3000,
+        [MOUSE_COMBO]              = 1200,
+        [NUMB_COMBO]               = 1200,
+        [FUNC_COMBO]               = 1200,
+        [ONESHOT_SYM_COMBO]        = 1200,
         [ONESHOT_SYM_LSHIFT_COMBO] = 1200,
-        [ONESHOT_FUNC_COMBO] = 1200,
-        [ONESHOT_MOUSE_COMBO] = 1200,
-        [DEL_COMBO] = 100,
-        [WINCLOSE_COMBO] = 1200,
-        [APPCLOSE_COMBO] = 1200,
-        [CAPLOCK_COMBO] = 100,
-        [CAPSWORD_COMBO] = 100,
-        [LEFTARROW_COMBO] = 100,
-        [RIGHTARROW_COMBO] = 100,
-        [UPARROW_COMBO] = 100,
-        [DOWNARROW_COMBO] = 100,
-        [PAGEUP_COMBO] = 100,
-        [PAGEDN_COMBO] = 100,
-        [HOME_COMBO] = 100,
-        [END_COMBO] = 100,
-        [TEAMS_MUTE] = 100,
-        [TEAMS_VIDTOG] = 100,
-        [BOOT_LEFT] = 3000,
-        [BOOT_RIGHT] = 3000,
-        [ONE_SHOT_CONTROL] = 100,
-        [ONE_SHOT_ALT] = 100,
-        [ONE_SHOT_SHIFT] = 100,
-        [MOUSE_LEFT_CLICK] = 100,
-        [MOUSE_RIGHT_CLICK] = 100,
-        [MOUSE_MIDDLE_CLICK] = 100,
+        [ONESHOT_FUNC_COMBO]       = 1200,
+        [ONESHOT_MOUSE_COMBO]      = 1200,
+        [ONESHOT_CONTROL]         = 100,
+        [ONESHOT_ALT]             = 100,
+        [ONESHOT_SHIFT]           = 100,
+        [MOUSE_LEFT_CLICK]         = 100,
+        [MOUSE_RIGHT_CLICK]        = 100,
+        [MOUSE_MIDDLE_CLICK]       = 100,
       };
 
 static bool ctl_was_held = false;
@@ -609,9 +609,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
     [_FUNCTION] = LAYOUT_split_3x6_3(
-    KC_TRNS, KC_MPLY, KC_MSTP,   KC_MNXT, KC_MPRV, KC_F11,  KC_F12,  KC_MUTE, KC_VOLU, KC_VOLD, KA_LOCK, KC_TRNS,
+    KC_TRNS, QK_BOOT, QK_REBOOT, KC_NO,   KC_NO,   KC_F11,  KC_F12,  KC_MUTE, KC_VOLU, KC_VOLD, KA_LOCK, KC_TRNS,
     KC_TRNS, KC_F1,   KC_F2,     KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_TRNS,
-    KC_TRNS, QK_BOOT, QK_REBOOT, KC_NO,   KC_NO,   KC_PSCR, KC_CALC, KC_BRIU, KC_BRID, KC_NO,   KA_CADEL, KC_TRNS,
+    KC_TRNS, KC_MPLY, KC_MSTP,   KC_MNXT, KC_MPRV, KC_PSCR, KC_CALC, KC_BRIU, KC_BRID, KC_NO,   KA_CADEL, KC_TRNS,
                                  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
