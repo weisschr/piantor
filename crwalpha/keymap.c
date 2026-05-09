@@ -8,23 +8,9 @@
 #define KC_LSHCTRL_G  MT(MOD_LCTL | MOD_LSFT, KC_G)
 #define KC_RSHCTRL_H  MT(MOD_RCTL | MOD_RSFT, KC_H)
 
-// APPS Mapping
-#define KA_LINKEDIN HYPR(KC_L)
-#define KA_OUTLOOK  HYPR(KC_O)
-#define KA_TEAMS    HYPR(KC_T)
-#define KA_FILEMGR  RGUI(KC_E)
-#define KA_POWERPT  HYPR(KC_P)
-#define KA_WORD     HYPR(KC_W)
-#define KA_TASKMGR  RCS(KC_ESC)
-#define KA_RUN      RGUI(KC_R)
-#define KA_EMOJIS   LGUI(KC_DOT)
-#define KA_EXCEL    HYPR(KC_X)
-#define KA_SNIP     SGUI(KC_S)
-#define KA_CLIPBRD  RGUI(KC_V)
-#define KA_LOCK     RGUI(KC_L)
-
 // Behavior
 #define KA_CADEL    C(A(KC_DEL))
+#define KA_LOCK     G(KC_L)
 
 // Browser
 #define CR_NTAB     C(KC_T)
@@ -210,8 +196,8 @@ combo_t key_combos[] = {
 [END_COMBO]          = COMBO(end_combo, KC_END),
 
 //------------- Boot combos
-[BOOT_LEFT] = COMBO(boot_left_combo,QK_BOOT),
-[BOOT_RIGHT] = COMBO(boot_right_combo,QK_BOOT),
+[BOOT_LEFT]          = COMBO(boot_left_combo,QK_BOOT),
+[BOOT_RIGHT]         = COMBO(boot_right_combo,QK_BOOT),
 
 //------------- Teams toggles
 [TEAMS_MUTE]         = COMBO(teams_mute, RCS(KC_M)),
@@ -264,7 +250,6 @@ const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
         [RBRACE_COMBO]             = 100,
         [LCURLY_COMBO]             = 100,
         [RCURLY_COMBO]             = 100,
-        [DEFAULT_COMBO]            = 100,
         [WINCLOSE_COMBO]           = 1200,
         [APPCLOSE_COMBO]           = 1200,
         [CAPLOCK_COMBO]            = 100,
@@ -283,6 +268,7 @@ const uint16_t combo_idle_delay_ms[COMBO_LENGTH] = {
         [TEAMS_VIDTOG]             = 100,
         [BOOT_LEFT]                = 3000,
         [BOOT_RIGHT]               = 3000,
+        [DEFAULT_COMBO]            = 100,
         [MOUSE_COMBO]              = 1200,
         [NUMB_COMBO]               = 1200,
         [FUNC_COMBO]               = 1200,
@@ -503,6 +489,7 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     case WINCLOSE_COMBO:
     case APPCLOSE_COMBO:
     case LESC_COMBO:
+    case DEL_COMBO:
         return 10;
     case LEFTARROW_COMBO:
     case RIGHTARROW_COMBO:
@@ -552,7 +539,6 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     if (timer_elapsed32(last_keypress_time) < combo_idle_delay_ms[combo_index]) {
         return false;
     }
-
     return true;
 }
 
